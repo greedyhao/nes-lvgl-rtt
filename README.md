@@ -31,3 +31,14 @@ This project has so much problems. Some of them show as below:
 
 首先需要安装env环境，中文用户请转移到[官方文档](https://www.rt-thread.org/document/site/rtthread-development-guide/rtthread-tool-manual/env/env-user-manual/)查看介绍
 
+进入bsp\qemu-vexpress-a9，右键选择env在此处打开
+
+输入
+
+```
+qemu.bat
+```
+
+即可看到效果
+
+![](test.gif)
