@@ -12,6 +12,10 @@ This project has so much problems. Some of them show as below:
 + The picture trembled slightly.
 
 ## User guide
+
+### Linux user
+Refer to the content of this [link](https://github.com/RT-Thread/env).
+
 ### Windows user
 download [ENV](https://drive.google.com/open?id=1oOEl1puQY2k9tS5A8Zw0qP2yFmQ0_9oU) 
 
@@ -34,9 +38,6 @@ There is an image of add_env_to_right-click_menu.png in the env directory. Follo
 #### run this project
 
 Enter into bsp\qemu-vexpress-a9, right-click and select **ConEmu Here**.
-
-### Linux user
-Refer to the content of this [link](https://github.com/RT-Thread/env).
 
 Terminal input:
 
