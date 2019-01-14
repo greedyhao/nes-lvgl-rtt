@@ -11,7 +11,42 @@ This project has so much problems. Some of them show as below:
 + The game has no controls and without sounds.
 + The picture trembled slightly.
 
-## 
+## User guide
+### Windows user
+download [ENV](https://drive.google.com/open?id=1oOEl1puQY2k9tS5A8Zw0qP2yFmQ0_9oU) 
+
+both env_released_1.0.0.zip or env_released_1.0.0.7z is ok.
+
+Notice that git is needed. You can download git from https://git-scm.com/downloads.
+
+#### how to use env
+
+Unpack the env_released_1.0.0 to the place you want to install the ENV. Here two way to use ENV.
+
+**Method 1**: Click on the executable file under the env directory
+
+Double-click to open the env.exe. If the opening fails, you can try to use env.bat
+
+**Method 2**: Open the env console from the right-click menu in the folder
+
+There is an image of add_env_to_right-click_menu.png in the env directory. Follow the steps in the image to launch the env console from the right-click menu in any folder
+
+#### run this project
+
+Enter into bsp\qemu-vexpress-a9, right-click and select **ConEmu Here**.
+
+### Linux user
+Refer to the content of this [link](https://github.com/RT-Thread/env).
+
+Terminal input:
+
+```
+qemu.bat
+```
+
+Results the following:
+
+![](test.gif)
 
 ----
 
