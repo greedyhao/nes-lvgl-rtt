@@ -1,0 +1,12 @@
+[
+ {
+  "path": "/packages/system/gui_engine", 
+  "ver": "latest", 
+  "name": "GUIENGINE"
+ }, 
+ {
+  "path": "/packages/system/LittlevGL2RTT", 
+  "ver": "test", 
+  "name": "LITTLEVGL2RTT"
+ }
+]
