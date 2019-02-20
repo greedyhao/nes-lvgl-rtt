@@ -647,8 +647,8 @@ void NES_RenderLine(int y_axes)
 			}	
 		}
 	}
-    // else for(i=8; i<264; i++)Buffer_scanline[i] = black;//Çå¿ÕÏÔÊ¾»º´æ,ºÚÆÁ	 
-	else for(i=7; i<264; i++)Buffer_scanline[i] = black;//Çå¿ÕÏÔÊ¾»º´æ,ºÚÆÁ	 
+    else for(i=8; i<264; i++)Buffer_scanline[i] = black;//Çå¿ÕÏÔÊ¾»º´æ,ºÚÆÁ	 
+	// else for(i=7; i<264; i++)Buffer_scanline[i] = black;//Çå¿ÕÏÔÊ¾»º´æ,ºÚÆÁ	 
 	//Íê³ÉÉ¨Ãè£¬½«ÐÐÏÔÊ¾»º´æÐ´ÈëLCD*/
 	// NES_LCD_DisplayLine(y_axes, Buffer_scanline);		 //Æô¶¯LCDÏÔÊ¾Ò»ÐÐ£¬²éÑ¯»òDMA´«ËÍ
 	// memcpy(nes_fb_img_src.data + (y_axes*800), Buffer_scanline, 256);

@@ -1,0 +1,40 @@
+import os
+from building import * 
+import rtconfig
+
+
+# get current dir path
+cwd = GetCurrentDir()
+
+# init src and inc vars
+src = Glob('*.cpp')
+src += Glob('*.c')
+# src += Glob('rt-thread/*.cpp')
+# src += Glob('rt-thread/*.c')
+inc = []
+
+# add InfoNES2RTT common include
+inc = inc + [cwd]
+inc += [cwd + "/rt-thread"]
+
+# add InfoNES2RTT basic code
+src += ['rt-thread/InfoNES_System_RTT.c']
+
+LOCAL_CCFLAGS = ''
+
+if rtconfig.CROSS_TOOL == 'gcc':
+    LOCAL_CCFLAGS += ' -std=c99'
+elif rtconfig.CROSS_TOOL == 'keil':
+    LOCAL_CCFLAGS += '--gnu'
+
+# add group to IDE project
+objs = DefineGroup('InfoNES2RTT', src, depend = ['PKG_USING_InfoNES2RTT'], CPPPATH = inc, LOCAL_CCFLAGS = LOCAL_CCFLAGS)
+list = os.listdir(cwd)
+
+if GetDepend('PKG_USING_InfoNES2RTT'):
+    for d in list:
+        path = os.path.join(cwd, d)
+        if os.path.isfile(os.path.join(path, 'SConscript')):
+            objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+Return('objs')

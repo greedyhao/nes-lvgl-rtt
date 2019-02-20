@@ -214,6 +214,7 @@ long list_thread(void)
                     else if (stat == RT_THREAD_SUSPEND) rt_kprintf(" suspend");
                     else if (stat == RT_THREAD_INIT)    rt_kprintf(" init   ");
                     else if (stat == RT_THREAD_CLOSE)   rt_kprintf(" close  ");
+                    else if (stat == RT_THREAD_RUNNING) rt_kprintf(" running");
 
 #if defined(ARCH_CPU_STACK_GROWS_UPWARD)
                     ptr = (rt_uint8_t *)thread->stack_addr + thread->stack_size - 1;
@@ -799,6 +800,7 @@ static char *const device_type_str[] =
     "Portal Device",
     "Timer Device",
     "Miscellaneous Device",
+    "Sensor Device",
     "Unknown"
 };
 
