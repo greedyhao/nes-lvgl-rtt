@@ -35,3 +35,7 @@ config BSP_DRV_AUDIO
 config PKG_USING_NES2RTT_O
     bool "Enable nes emulator"
     default y
+
+config PKG_USING_InfoNES2RTT
+    bool "Enable infones emulator"
+    default y

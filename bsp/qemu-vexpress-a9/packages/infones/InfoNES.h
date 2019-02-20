@@ -177,10 +177,10 @@ extern BYTE *PPU_SP_Base;
 extern WORD PPU_SP_Height;
 
 /* NES display size */
-// #define NES_DISP_WIDTH      256
-// #define NES_DISP_HEIGHT     240
-#define NES_DISP_WIDTH      LV_HOR_RES
-#define NES_DISP_HEIGHT     LV_VER_RES
+#define NES_DISP_WIDTH      640
+#define NES_DISP_HEIGHT     480
+// #define NES_DISP_WIDTH      LV_HOR_RES
+// #define NES_DISP_HEIGHT     LV_VER_RES
 
 /* VRAM Write Enable ( 0: Disable, 1: Enable ) */
 extern BYTE byVramWriteEnable;

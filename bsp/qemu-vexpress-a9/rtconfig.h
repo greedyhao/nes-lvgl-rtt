@@ -210,6 +210,20 @@
 #define RT_USING_LOGTRACE
 #define LOG_TRACE_MAX_SESSION 16
 #define LOG_TRACE_USING_LEVEL_INFO
+#define RT_USING_ULOG
+#define ULOG_OUTPUT_LVL_I
+#define ULOG_OUTPUT_LVL 6
+#define ULOG_ASSERT_ENABLE
+#define ULOG_LINE_BUF_SIZE 128
+
+/* log format */
+
+#define ULOG_USING_COLOR
+#define ULOG_OUTPUT_TIME
+#define ULOG_OUTPUT_LEVEL
+#define ULOG_OUTPUT_TAG
+#define ULOG_BACKEND_USING_CONSOLE
+#define ULOG_SW_VERSION_NUM 0x00101
 #define RT_USING_LWP
 
 /* RT-Thread online packages */
@@ -271,6 +285,6 @@
 #define BSP_LCD_WIDTH 640
 #define BSP_LCD_HEIGHT 480
 #define BSP_DRV_EMAC
-#define PKG_USING_NES2RTT_O
+#define PKG_USING_InfoNES2RTT
 
 #endif

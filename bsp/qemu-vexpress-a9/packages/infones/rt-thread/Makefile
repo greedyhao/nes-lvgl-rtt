@@ -10,13 +10,13 @@ TARBALL = InfoNES08J
 
 .OFILES	=	$(.CFILES:.cpp=.o)
 
-CCFLAGS = `gtk-config --cflags` -O2
-LDFILGS = `gtk-config --libs gthread` -lstdc++		# gcc3.x.x
+CCFLAGS = -O2
+LDFILGS = -lstdc++		# gcc3.x.x
 
 all: InfoNES
 
 InfoNES: $(.OFILES)
-	$(CC) $(INCLUDES) -o $@ $(.OFILES) $(LDFILGS) -lm -lz
+	$(CC) $(INCLUDES) -o $@ $(.OFILES) $(LDFILGS) -lm -lz -lpthread
 
 .cpp.o:
 	$(CC) $(INCLUDES) -c $(CCFLAGS) $*.cpp  -o $@

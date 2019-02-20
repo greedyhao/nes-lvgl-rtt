@@ -10,14 +10,14 @@
 /*  Include files                                                    */
 /*-------------------------------------------------------------------*/
 
-// #define DBG_ENABLE
-// #define DBG_SECTION_NAME  "app.nes"
-// #define DBG_COLOR
-// #define LOG_TAG              "app.nes"
-// #define LOG_LVL              LOG_LVL_DBG
+#define DBG_ENABLE
+#define DBG_SECTION_NAME  "app.nes"
+#define DBG_COLOR
+#define LOG_TAG              "app.nes"
+#define LOG_LVL              LOG_LVL_DBG
 
-// #define LOG_LVL              DBG_INFO
-// #include <ulog.h>
+#define LOG_LVL              DBG_INFO
+#include <ulog.h>
 
 
 #include <rtthread.h>
@@ -30,9 +30,9 @@
 // #include <gdk/gdkkeysyms.h>
 #include <pthread.h>
 
-//#define DRV_DEBUG
-#define LOG_TAG             "app.nes.sys"
-#include <drv_log.h>
+// //#define DRV_DEBUG
+// #define LOG_TAG             "app.nes.sys"
+// #include <drv_log.h>
 
 // #include <sys/types.h>
 // #include <sys/stat.h>
@@ -172,9 +172,9 @@ void infones_rtt_main(void)
   {
       rt_device_control(device, RTGRAPHIC_CTRL_GET_INFO, &info);
   }
-
+  
   nes_fb_img_src.data = info.framebuffer;
-  WorkFrame = info.framebuffer;
+  // WorkFrame = info.framebuffer;
 
   //Create an image with the NES frame buffer image
   nes_fb = lv_img_create(lv_scr_act(), NULL);
@@ -472,7 +472,7 @@ void *emulation_thread(void *args)
 /*===================================================================*/
 void start_application( char *filename )
 {
-  // WorkFrame = (WORD *)malloc(NES_DISP_WIDTH * NES_DISP_HEIGHT * sizeof(WORD));  
+  WorkFrame = (WORD *)malloc(NES_DISP_WIDTH * NES_DISP_HEIGHT * sizeof(WORD));  
   ApuEventQueue = (struct ApuEvent_t *)malloc(APU_EVENT_MAX * sizeof(struct ApuEvent_t));
   DRAM = (BYTE *)malloc(NES_DRAM_SIZE * sizeof(BYTE));
   PPURAM = (BYTE *)malloc(PPURAM_SIZE * sizeof(BYTE));
@@ -550,7 +550,7 @@ void reset_application( void )
   if ( bThread == true )
   {
     /* Terminate emulation thread */
-    // free(WorkFrame);
+    free(WorkFrame);
     free(ApuEventQueue);
     free(DRAM);
     free(PPURAM);
@@ -560,7 +560,7 @@ void reset_application( void )
     bThread = false;
     dwKeySystem |= PAD_SYS_QUIT; 
 
-    // WorkFrame = (WORD *)malloc(NES_DISP_WIDTH * NES_DISP_HEIGHT * sizeof(WORD));  
+    WorkFrame = (WORD *)malloc(NES_DISP_WIDTH * NES_DISP_HEIGHT * sizeof(WORD));  
     ApuEventQueue = (struct ApuEvent_t *)malloc(APU_EVENT_MAX * sizeof(struct ApuEvent_t));
     DRAM = (BYTE *)malloc(NES_DRAM_SIZE * sizeof(BYTE));
     PPURAM = (BYTE *)malloc(PPURAM_SIZE * sizeof(BYTE));
@@ -1031,6 +1031,10 @@ void InfoNES_LoadFrame()
   // nes_fb = lv_img_create(lv_scr_act(), NULL);
   // lv_img_set_src(nes_fb, &nes_fb_img_src);
 
+
+  memcpy(nes_fb_img_src.data, WorkFrame, NES_DISP_WIDTH * NES_DISP_HEIGHT * sizeof(WORD));
+  // LOG_I("%d\n", WorkFrame);
+	lv_obj_invalidate(nes_fb);
   
 }
 
@@ -1088,7 +1092,7 @@ int InfoNES_SoundOpen( int samples_per_sync, int sample_rate )
   // wavflag = 0;
 
   // /* Open sound device */
-  sound_fd = open( SOUND_DEVICE, O_WRONLY );
+  // sound_fd = open( SOUND_DEVICE, O_WRONLY );
   // if ( sound_fd < 0 ) 
   // {
   //   InfoNES_MessageBox("opening "SOUND_DEVICE"...failed");

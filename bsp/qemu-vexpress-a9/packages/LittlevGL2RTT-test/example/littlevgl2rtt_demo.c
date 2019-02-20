@@ -6,13 +6,15 @@
 
 #include "lv_test_theme.h"
 
-#include <nes_lvgl.h>
+// #include <nes_lvgl.h>
+#include <littlevgl2rtt_demo.h>
 
 static void lvgl_demo_run(void *p)
 {
     // lv_theme_t *th = lv_theme_material_init(210, LV_FONT_DEFAULT);
     // lv_test_theme(th); 
-    nes2rtt_init();
+    // nes2rtt_init();
+    infones_rtt_main();
 
     while(1)
     {

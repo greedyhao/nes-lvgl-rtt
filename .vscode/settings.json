@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "nes_lvgl.h": "c",
+        "ulog.h": "c"
+    }
+}

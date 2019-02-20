@@ -38,9 +38,10 @@
 #include <rtthread.h>
 #include <stdlib.h>
 
-//#define DRV_DEBUG
-#define LOG_TAG             "app.nes"
-#include <drv_log.h>
+// //#define DRV_DEBUG
+// #define LOG_TAG             "app.nes"
+// #include <drv_log.h>
+#include <ulog.h>
 
 #include "InfoNES.h"
 #include "InfoNES_System.h"
@@ -436,37 +437,38 @@ int InfoNES_Reset()
   /*  Initialize pAPU                                                  */
   /*-------------------------------------------------------------------*/
 
-  // InfoNES_pAPUInit();
+  InfoNES_pAPUInit();
 
   /*-------------------------------------------------------------------*/
   /*  Initialize Mapper                                                */
   /*-------------------------------------------------------------------*/
 
   // Get Mapper Table Index
-  // for ( nIdx = 0; MapperTable[ nIdx ].nMapperNo != -1; ++nIdx )
-  // {
-  //   if ( MapperTable[ nIdx ].nMapperNo == MapperNo )
-  //     break;
-  // }
+  for ( nIdx = 0; MapperTable[ nIdx ].nMapperNo != -1; ++nIdx )
+  {
+    if ( MapperTable[ nIdx ].nMapperNo == MapperNo )
+      break;
+  }
+
   LOG_I("nIdx:%d\n",nIdx);
-  // LOG_I("nMapperNo:%d\n",MapperTable[ nIdx ].nMapperNo);
-  // rt_kprintf("%d\n", MapperTable[ nIdx ].nMapperNo) ;
-  // if ( MapperTable[ nIdx ].nMapperNo == -1 )
-  // {
-  //   // Non support mapper
-  //   // InfoNES_MessageBox( "Mapper #%d is unsupported.\n", MapperNo );
-  //   rt_kprintf( "Mapper #%d is unsupported.\n", MapperNo );
-  //   return -1;
-  // }
+  LOG_I("nMapperNo:%d\n",MapperTable[ nIdx ].nMapperNo);
+
+  if ( MapperTable[ nIdx ].nMapperNo == -1 )
+  {
+    // Non support mapper
+    // InfoNES_MessageBox( "Mapper #%d is unsupported.\n", MapperNo );
+    rt_kprintf( "Mapper #%d is unsupported.\n", MapperNo );
+    return -1;
+  }
 
   // Set up a mapper initialization function
-  // MapperTable[ nIdx ].pMapperInit();
+  MapperTable[ nIdx ].pMapperInit();
 
   /*-------------------------------------------------------------------*/
   /*  Reset CPU                                                        */
   /*-------------------------------------------------------------------*/
 
-  // K6502_Reset();
+  K6502_Reset();
 
   // Successful
   return 0;
@@ -590,6 +592,7 @@ void InfoNES_Main()
     InfoNES_Cycle();
   }
 
+  LOG_I("NES FIN");
   // Completion treatment
   InfoNES_Fin();
 }
@@ -614,6 +617,7 @@ void InfoNES_Cycle()
   for (;;)
   {    
     int nStep;
+    LOG_I("%d",PPU_R1 & R1_SHOW_SCR);
 
     // Set a flag if a scanning line is a hit in the sprite #0
     if ( SpriteJustHit == PPU_Scanline &&
@@ -852,6 +856,7 @@ void InfoNES_DrawLine()
     for ( nIdx = PPU_Scr_H_Bit; nIdx < 8; ++nIdx )
     {
       *( pPoint++ ) = pPalTbl[ pbyChrData[ nIdx ] ];
+      LOG_I("%d",pPalTbl[ pbyChrData[ nIdx ] ]);
     }
 
     // Callback at PPU read/write
