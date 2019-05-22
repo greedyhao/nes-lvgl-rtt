@@ -30,3 +30,7 @@ config BSP_DRV_AUDIO
     bool "Audio driver"
     select RT_USING_AUDIO
     default n
+
+config PKG_USING_InfoNES2RTT
+    bool "InfoNES driver"
+        default n

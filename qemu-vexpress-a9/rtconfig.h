@@ -278,10 +278,10 @@
 
 #define SOC_VEXPRESS_A9
 #define RT_USING_UART0
-#define RT_USING_UART1
 #define BSP_DRV_CLCD
 #define BSP_LCD_WIDTH 640
 #define BSP_LCD_HEIGHT 480
 #define BSP_DRV_EMAC
+#define PKG_USING_InfoNES2RTT
 
 #endif
